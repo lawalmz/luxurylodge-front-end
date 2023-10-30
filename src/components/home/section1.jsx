@@ -1,6 +1,6 @@
 import React from "react";
 
-function Hero({ darkMode }) {
+function Section1({ darkMode }) {
   return (
 
     <div className={`hero ${darkMode ? "dark" : ""}`}>
@@ -19,4 +19,4 @@ function Hero({ darkMode }) {
   );
 }
 
-export default Hero;
+export default Section1;

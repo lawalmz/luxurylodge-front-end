@@ -3,7 +3,7 @@ import Cards from "./Cards";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-function Part({ darkMode }) {
+function Section2({ darkMode }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const cardsData = [
@@ -36,6 +36,8 @@ function Part({ darkMode }) {
     // Your card data
   ];
 
+
+
   const settings = {
     dots: true,
     infinite: true,
@@ -44,21 +46,29 @@ function Part({ darkMode }) {
     slidesToScroll: 1,
     responsive: [
       {
-        breakpoint: 1024, // Medium screens and below
+        breakpoint: 1024,
         settings: {
-          slidesToShow: 3, // Adjust the number of slides for medium screens
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          infinite: true,
+          dots: true,
         },
       },
       {
-        breakpoint: 768, // Small screens and below
+        breakpoint: 600,
         settings: {
-          slidesToShow: 2, // Adjust the number of slides for small screens
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
         },
       },
       {
-        breakpoint: 480, // Mobile screens and below
+        breakpoint: 480,
         settings: {
-          slidesToShow: 1, // Adjust the number of slides for mobile screens
+          slidesToShow: 1,
+          slidesToScroll: 1,
+         
+          
         },
       },
     ],
@@ -103,4 +113,4 @@ function Part({ darkMode }) {
   );
 }
 
-export default Part;
+export default Section2;

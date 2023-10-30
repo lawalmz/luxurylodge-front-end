@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 //import Axios from "axios";
-import Hero from "./Hero";
+
 import Nav from "./Nav";
-import Part from "./Part";
-import P from "./P2"
+import Section1 from "./section1";
+import Section2 from "./section2";
+import Section3 from "./section3";
 
 
 function App(){
@@ -16,9 +17,9 @@ function App(){
   return(
   <div className={`app ${darkMode ? "dark" : ""}`}>
   <Nav darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-  <Hero darkMode={darkMode} />
-  <Part darkMode={darkMode}/>
-  <P darkMode={darkMode}/>
+  <Section1 darkMode={darkMode} />
+  <Section2 darkMode={darkMode}/>
+  <Section3 darkMode={darkMode}/>
 
 
   </div>)
