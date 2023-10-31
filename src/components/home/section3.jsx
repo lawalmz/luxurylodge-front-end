@@ -7,13 +7,13 @@ function Section({ darkMode }) {
   ? "../../images/dark_logo.jpg" // Image URL for dark mode
   : "../../images/logo2.jpg"; // Image URL for normal mode
   return (
-    <div className={`part ${darkMode ? "dark" : ""}`}>
+    <div className={`section ${darkMode ? "dark" : ""}`}>
       <div className={`Pcontainer ${darkMode ? "dark" : ""}`}>
-      <img
-          src={imageUrl}
-          alt="Luxury Lodge"
-          className="section3-img"
-        />
+        <img
+            src={imageUrl}
+            alt="Luxury Lodge"
+            className="section3-img"
+          />
         <div class= {`vertical-line ${darkMode ? "dark" : ""}`}></div>
         <div class="text">
           <h1>LuxuryLodges: Timeless Luxury, Unforgettable Adventures!</h1>
