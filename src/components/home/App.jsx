@@ -4,9 +4,13 @@ import Nav from "./Nav";
 import Section1 from "./section1";
 import Section2 from "./section2";
 import Section3 from "./section3";
+import Section4 from "./section4"; 
+import Section5 from "./section5.jsx";
+import Footer from "./footer.jsx";
+import d from "./d";
+import en from "./en.js";
 import data from "./data"
 import input from "./note.js"
-import Section4 from "./section4"; 
 
 
 
@@ -30,7 +34,10 @@ function App(){
   <Section2 darkMode={darkMode} cardsData={data}  heading={input[0].headning} caption={input[0].caption}/>
   <Section3 darkMode={darkMode}/>
   <Section2 darkMode={darkMode} cardsData={data}  heading={input[1].headning} caption={input[1].caption}/>
-  <Section4 darkMode={darkMode} />
+  <Section4 darkMode={darkMode} data={d}/>
+  <Section5 darkMode={darkMode} cardData={en}/>
+  <Footer darkMode={darkMode}  />
+
 
 
   </div>)
