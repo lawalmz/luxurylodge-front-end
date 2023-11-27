@@ -1,7 +1,7 @@
 const en = [
    
-    // Add more testimonials here
-    { id:1, icon: 'wifi', title: 'WIFI' },
+    
+    { id:1, icon: 'wifi',title: 'WIFI' },
     { id:2, icon: 'biking', title: 'Biking' },
     { id:3, icon: 'swimmer', title: 'POOL' },
     { id:4, icon: 'parking', title: 'PARKING' },

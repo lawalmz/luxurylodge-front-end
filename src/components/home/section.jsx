@@ -1,11 +1,13 @@
-import React from 'react';
+import React from "react";
+import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCoffee, faBiking, faMusic, faWifi, faParking, faSwimmer, faWineGlass,faBed } from '@fortawesome/free-solid-svg-icons';
+import { faCoffee, faBiking, faMusic, faWifi, faParking, faSwimmer, faWineGlass, faBed } from '@fortawesome/free-solid-svg-icons';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-const CircularCardSlider = ({ darkMode, cardData }) => {
+function Section({ darkMode, cardData }) {
+
   const settings = {
     dots: false,
     infinite: true,
@@ -57,23 +59,23 @@ const CircularCardSlider = ({ darkMode, cardData }) => {
     swimmer: faSwimmer,
     wine: faWineGlass,
     coffee: faCoffee,
-    bed:faBed,
+    bed: faBed,
     // Add the rest of your icons here
   };
 
   return (
-    <div className={`section ${darkMode ? 'dark' : ''}`}>
+    <div className={`section ${darkMode ? "dark" : ""}`}>
       <h1>The Essentials</h1>
       <p>
-        Discover comfort in a collection of hotels offering top-tier amenities. 
-        Benefit from high-speed Wi-Fi, secure parking, an eclectic bar, and 
-        comfortable rooms. Our comprehensive facilities ensure a seamless stay 
-        with modern conveniences, connectivity, and relaxation. Your perfect 
-        accommodation awaits in our diverse range of hotels, guaranteeing a 
+        Discover comfort in a collection of hotels offering top-tier amenities.
+        Benefit from high-speed Wi-Fi, secure parking, an eclectic bar, and
+        comfortable rooms. Our comprehensive facilities ensure a seamless stay
+        with modern conveniences, connectivity, and relaxation. Your perfect
+        accommodation awaits in our diverse range of hotels, guaranteeing a
         delightful experience for every stay.
       </p>
       <Slider {...settings}>
-        {cardData.map((card, index) => (
+        {(cardData || []).map((card, index) => (
           <div key={index} style={cardStyle}>
             <FontAwesomeIcon icon={iconMap[card.icon]} style={{ fontSize: '80px', color: iconColor }} />
             <h2 style={{ margin: '10px 0' }}>{card.title}</h2>
@@ -82,6 +84,14 @@ const CircularCardSlider = ({ darkMode, cardData }) => {
       </Slider>
     </div>
   );
+}
+
+const mapStateToProps = (state) => {
+  return {
+    cardData: state.cardData,
+    darkMode: state.darkMode,
+  };
 };
 
-export default CircularCardSlider;
+export default connect(mapStateToProps)(Section);
+

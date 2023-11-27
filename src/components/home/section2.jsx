@@ -1,21 +1,19 @@
+// Section2.jsx
 import React, { useState, useEffect } from "react";
+import { connect } from 'react-redux';
 import Cards from "./Cards";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-//import cardsData from "./data.js"
-function Section2({ darkMode,cardsData,heading,caption }) {
+
+function Section2({ darkMode, cardsData, heading, caption }) {
   const [currentIndex, setCurrentIndex] = useState(0);
-
-
-
-
 
   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 4, // Number of slides to show on larger screens
+    slidesToShow: 4,
     slidesToScroll: 1,
     responsive: [
       {
@@ -40,18 +38,15 @@ function Section2({ darkMode,cardsData,heading,caption }) {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-         
-          
         },
       },
     ],
   };
-  
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % cardsData.length);
-    }, 5000); // Slide every 5 seconds
+    }, 5000);
 
     return () => clearInterval(interval);
   }, []);
@@ -59,9 +54,7 @@ function Section2({ darkMode,cardsData,heading,caption }) {
   return (
     <div className={`section ${darkMode ? "dark" : ""}`}>
       <h1>{heading}</h1>
-      <p>
-        {caption}
-      </p>
+      <p>{caption}</p>
 
       <Slider {...settings}>
         {cardsData.map((card, index) => (
@@ -71,7 +64,6 @@ function Section2({ darkMode,cardsData,heading,caption }) {
               title={card.title}
               description={card.description}
               backgroundImage={card.backgroundImage}
-              
               style={{
                 flex: "0 0 300px",
                 margin: "0 10px",
@@ -84,4 +76,8 @@ function Section2({ darkMode,cardsData,heading,caption }) {
   );
 }
 
-export default Section2;
+const mapStateToProps = (state) => ({
+  darkMode: state.darkMode,
+});
+
+export default connect(mapStateToProps)(Section2);
