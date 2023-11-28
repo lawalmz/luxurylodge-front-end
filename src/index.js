@@ -20,6 +20,10 @@ const router = createBrowserRouter([
     path: '/hotels',
     element: <Hotels />,
   },
+  {
+    path: '/filter',
+    element: <App />,
+  },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

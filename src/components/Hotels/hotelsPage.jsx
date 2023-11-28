@@ -3,6 +3,11 @@ import React from "react";
 import { connect } from 'react-redux';
 import Nav from "../home/Nav";
 import Footer from "../home/footer"
+import HotelsCard from "./h_card"
+import details from "./details";
+import { Link } from 'react-router-dom';
+
+
 
 function Hotels({ darkMode }) {
   return (
@@ -23,16 +28,33 @@ function Hotels({ darkMode }) {
           to a memorable adventure.</p>
         <hr />
         <div className={`p_container ${darkMode ? "dark" : ""}`} >
-          <p className="h_p">100 Hotels Available</p>
+          <p className="h_p">{details.length} Hotels Available</p>
           <div className="f_name">
-          <p className="filter-text">Filter</p>
-          <div className={`filter-icon ${darkMode ? "dark" : ""}`}>
-            <hr></hr>
-            <hr></hr>
-            <hr></hr>
+            <p className="filter-text">Filter</p>
+            <Link to="/filter">
+            <div className={`filter-icon ${darkMode ? "dark" : ""}`}>
+              <hr></hr>
+              <hr></hr>
+              <hr></hr>
+            </div>
+            </Link>
+
           </div>
-          </div>
+
         </div>
+        <div style={{ margin: '10px 0' }}>
+  {details.map((d, index) => (
+    <div key={index} style={{ marginBottom: '30px' }}>
+      <HotelsCard
+        title={d.title}
+        description={d.description}
+        backgroundImage={d.backgroundImage}
+      />
+    </div>
+  ))}
+</div>
+
+
 
       </div>
       <Footer />

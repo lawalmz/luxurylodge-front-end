@@ -2,14 +2,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faInstagram, faTwitter, faFacebook, faYoutube, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import { faInstagram, faFacebook, faYoutube, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { faMobileButton, faX } from "@fortawesome/free-solid-svg-icons";
 import { Link } from 'react-router-dom';
 
 const Footer = ({ darkMode }) => {
     const imageUrl = darkMode
-        ? "../../images/dark_logo.jpg" // Image URL for dark mode
-        : "../../images/logo2.jpg"; // Image URL for normal mode
+        ? "../../images/dark_logo.jpg" 
+        : "../../images/logo2.jpg"; 
 
     const iconColor = darkMode ? '#ffffff' : '#000000';
 

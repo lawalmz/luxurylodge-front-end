@@ -954,8 +954,75 @@ h2 {
 }
 
 
+.cardStyle {
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: row; 
+  justify-content: space-between;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #9a9a9a;
+}
 
+.cardStyle img {
+  flex: 0 0 40%;
+  margin-right: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+}
 
+.cardStyle .textStyle {
+  flex: 1; 
+  color: black; 
+  text-align: center; 
+}
+
+.cardStyle h1 {
+  font-size: 100px; 
+  margin-bottom: 10px;
+}
+
+.cardStyle p {
+  font-size: 20px; 
+  margin-bottom: 20px;
+}
+
+.cardStyle button {
+  padding: 10px 20px;
+  font-size: 18px; 
+  background-color: #4CAF50;
+  color: #ffffff; 
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .cardStyle {
+    flex-direction: column; 
+    height: auto;
+  }
+
+  .cardStyle img {
+    flex: 100%; 
+    margin-right: 0;
+    margin-bottom: 20px; 
+  }
+
+  .cardStyle h1 {
+    font-size: 2em;
+  }
+
+  .cardStyle p {
+    font-size: 1.2em; 
+  }
+
+  .cardStyle button {
+    font-size: 1.5em;
+  }
+}
 
 
 

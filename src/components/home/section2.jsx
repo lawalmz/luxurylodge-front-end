@@ -47,9 +47,9 @@ function Section2({ darkMode, cardsData, heading, caption }) {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % cardsData.length);
     }, 5000);
-
+  
     return () => clearInterval(interval);
-  }, []);
+  }, [cardsData.length, currentIndex]);
 
   return (
     <div className={`section ${darkMode ? "dark" : ""}`}>
