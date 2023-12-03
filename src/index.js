@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import store from './components/home/store';
 import App from './components/home/App';
 import Hotels from './components/Hotels/hotelsPage';
+import Fm from './components/Hotels/fm'
 import {
   createBrowserRouter,
   RouterProvider,
@@ -22,7 +23,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/filter',
-    element: <App />,
+    element: <Fm/>,
   },
 ]);
 

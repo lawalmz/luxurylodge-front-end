@@ -5,7 +5,13 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faUser } from '@fortawesome/free-solid-svg-icons';
 
-function Nav({ darkMode, toggleDarkMode, toggleMenu, isMenuOpen }) {
+function Nav({ darkMode, toggleDarkMode, toggleMenu, isMenuOpen, closeMenu }) {
+  const handleLinkClick = () => {
+    if (isMenuOpen) {
+      closeMenu();
+    }
+  };
+
   return (
     <nav className={`navbar ${isMenuOpen ? 'open' : ''} ${darkMode ? 'dark' : ''}`}>
       {/* ToggleSwitch */}
@@ -34,28 +40,28 @@ function Nav({ darkMode, toggleDarkMode, toggleMenu, isMenuOpen }) {
       </div>
       <ul className={`menu ${isMenuOpen ? 'open' : ''} ${darkMode ? 'dark' : ''}`}>
         <li>
-          <Link to="/" className= {`nav-link ${darkMode ? 'dark' : ''}`}>
+          <Link to="/" className={`nav-link ${darkMode ? 'dark' : ''}`} onClick={handleLinkClick}>
             Home
           </Link>
         </li>
         <li>
-          <Link to="/about" className={`nav-link ${darkMode ? 'dark' : ''}`}>
+          <Link to="/about" className={`nav-link ${darkMode ? 'dark' : ''}`} onClick={handleLinkClick}>
             About
           </Link>
         </li>
         <li>
-          <Link to="/services" className={`nav-link ${darkMode ? 'dark' : ''}`}>
+          <Link to="/services" className={`nav-link ${darkMode ? 'dark' : ''}`} onClick={handleLinkClick}>
             Services
           </Link>
         </li>
         <li>
-          <Link to="/contact" className={`nav-link ${darkMode ? 'dark' : ''}`}>
+          <Link to="/contact" className={`nav-link ${darkMode ? 'dark' : ''}`} onClick={handleLinkClick}>
             Contact
           </Link>
         </li>
-        <li className="nav-icon"> {/* Add a class to the li element */}
-          <Link to="/cart" className={`nav-link ${darkMode ? 'dark' : ''}`}>
-            <FontAwesomeIcon icon={faCartShopping} className="font" /> <br/>
+        <li className="nav-icon">
+          <Link to="/cart" className={`nav-link ${darkMode ? 'dark' : ''}`} onClick={handleLinkClick}>
+            <FontAwesomeIcon icon={faCartShopping} className="font" /> <br />
           </Link>
         </li>
       </ul>
@@ -65,12 +71,13 @@ function Nav({ darkMode, toggleDarkMode, toggleMenu, isMenuOpen }) {
 
 const mapStateToProps = (state) => ({
   darkMode: state.darkMode,
-  isMenuOpen: state.isMenuOpen, // Assuming you have isMenuOpen in your Redux state
+  isMenuOpen: state.isMenuOpen,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   toggleDarkMode: () => dispatch({ type: 'TOGGLE_DARK_MODE' }),
-  toggleMenu: () => dispatch({ type: 'TOGGLE_MENU' }), // Add this action if you have isMenuOpen in your Redux state
+  toggleMenu: () => dispatch({ type: 'TOGGLE_MENU' }),
+  closeMenu: () => dispatch({ type: 'CLOSE_MENU' }), // Add this action to close the menu
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Nav);

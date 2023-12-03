@@ -1,5 +1,16 @@
+// store.jsx
 import { createStore } from 'redux';
 import Cookies from 'js-cookie';
+
+// Action types
+const TOGGLE_DARK_MODE = 'TOGGLE_DARK_MODE';
+const TOGGLE_MENU = 'TOGGLE_MENU';
+const CLOSE_MENU = 'CLOSE_MENU'; // Add this action type
+
+// Action creators
+export const toggleDarkMode = () => ({ type: TOGGLE_DARK_MODE });
+export const toggleMenu = () => ({ type: TOGGLE_MENU });
+export const closeMenu = () => ({ type: CLOSE_MENU }); // Add this action creator
 
 // Initial state
 const initialState = {
@@ -13,22 +24,28 @@ const initialState = {
     { id: 5, icon: 'wine', title: 'BAR' },
     { id: 6, icon: 'music', title: 'MUSIC' },
     { id: 7, icon: 'bed', title: 'ROOMS' },
-  ], // Initialize as an empty array
+  ],
 };
 
+// Reducer
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'TOGGLE_DARK_MODE':
+    case TOGGLE_DARK_MODE:
       // Toggle darkMode and update the cookie
       Cookies.set('darkMode', !state.darkMode, { expires: 365 }); // Set cookie to expire in 365 days
       return {
         ...state,
         darkMode: !state.darkMode,
       };
-    case 'TOGGLE_MENU':
+    case TOGGLE_MENU:
       return {
         ...state,
         isMenuOpen: !state.isMenuOpen,
+      };
+    case CLOSE_MENU: // Handle CLOSE_MENU action
+      return {
+        ...state,
+        isMenuOpen: false,
       };
     default:
       return state;
