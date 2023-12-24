@@ -1,8 +1,7 @@
-// SearchForm.jsx
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 
-
-const SearchForm = () => {
+const Fm = ({ darkMode, onFormSubmit, fetchHotels }) => {
   const [formData, setFormData] = useState({
     location: '',
     checkIn: '',
@@ -20,15 +19,37 @@ const SearchForm = () => {
     }));
   };
 
-  const handleSearch = () => {
-    console.log('Search:', formData);
+  const handleSearch = async () => {
+    try {
+      // Save the form data to localStorage
+      localStorage.setItem('formData', JSON.stringify(formData));
+  
+      // Submit the form and fetch hotels
+      await onFormSubmit(formData);
+      setFormData({
+        location: '',
+        checkIn: '',
+        checkOut: '',
+        adults: 1,
+        children: 0,
+        rooms: 1,
+      });
+      await fetchHotels();
+  
+      // Reload the page
+      window.location.reload();
+    } catch (error) {
+      console.error('Error during form submission:', error);
+    }
   };
+  
 
   return (
-    <form className="search-form">
-      <label className="form-element">
+    <form className={`search-form ${darkMode ? 'dark' : ''}`}>
+      <label className={`form-element ${darkMode ? 'dark-label' : ''}`}>
         Location:
-        <input className='location'
+        <input
+          className='location'
           type="text"
           name="location"
           value={formData.location}
@@ -37,9 +58,10 @@ const SearchForm = () => {
         />
       </label>
 
-      <label className="form-element">
+      <label className={`form-element ${darkMode ? 'dark-label' : ''}`}>
         Check-in:
         <input
+          className='check-in'
           type="date"
           name="checkIn"
           value={formData.checkIn}
@@ -48,9 +70,10 @@ const SearchForm = () => {
         />
       </label>
 
-      <label className="form-element">
+      <label className={`form-element ${darkMode ? 'dark-label' : ''}`}>
         Check-out:
         <input
+          className='check-out'
           type="date"
           name="checkOut"
           value={formData.checkOut}
@@ -59,7 +82,7 @@ const SearchForm = () => {
         />
       </label>
 
-      <label className="form-element">
+      <label className={`form-element ${darkMode ? 'dark-label' : ''}`}>
         Guests:
         <select
           name="adults"
@@ -75,13 +98,13 @@ const SearchForm = () => {
         </select>
       </label>
 
-      <label className="form-element">
+      <label className={`form-element ${darkMode ? 'dark-label' : ''}`}>
         Children:
         <select
           name="children"
           value={formData.children}
           onChange={handleChange}
-          className="select-box"
+          className="select-box2"
         >
           {Array.from({ length: 5 }, (_, index) => (
             <option key={index} value={index}>
@@ -91,9 +114,10 @@ const SearchForm = () => {
         </select>
       </label>
 
-      <label className="form-element">
+      <label className={`form-element ${darkMode ? 'dark-label' : ''}`}>
         Rooms:
         <input
+          className="room"
           type="number"
           name="rooms"
           value={formData.rooms}
@@ -109,4 +133,8 @@ const SearchForm = () => {
   );
 };
 
-export default SearchForm;
+const mapStateToProps = (state) => ({
+  darkMode: state.darkMode,
+});
+
+export default connect(mapStateToProps)(Fm);

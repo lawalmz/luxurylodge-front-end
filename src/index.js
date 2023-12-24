@@ -7,6 +7,7 @@ import store from './components/home/store';
 import App from './components/home/App';
 import Hotels from './components/Hotels/hotelsPage';
 import Fm from './components/Hotels/fm'
+
 import {
   createBrowserRouter,
   RouterProvider,
@@ -22,7 +23,7 @@ const router = createBrowserRouter([
     element: <Hotels />,
   },
   {
-    path: '/filter',
+    path: '/t',
     element: <Fm/>,
   },
 ]);

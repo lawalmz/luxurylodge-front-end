@@ -40,9 +40,10 @@ function Nav({ darkMode, toggleDarkMode, toggleMenu, isMenuOpen, closeMenu }) {
       </div>
       <ul className={`menu ${isMenuOpen ? 'open' : ''} ${darkMode ? 'dark' : ''}`}>
         <li>
-          <Link to="/" className={`nav-link ${darkMode ? 'dark' : ''}`} onClick={handleLinkClick}>
+          {/* <Link to="/" className={`nav-link ${darkMode ? 'dark' : ''}`} onClick={handleLinkClick}>
             Home
-          </Link>
+          </Link> */}
+          <a href="/">Home</a> 
         </li>
         <li>
           <Link to="/about" className={`nav-link ${darkMode ? 'dark' : ''}`} onClick={handleLinkClick}>
@@ -59,11 +60,7 @@ function Nav({ darkMode, toggleDarkMode, toggleMenu, isMenuOpen, closeMenu }) {
             Contact
           </Link>
         </li>
-        <li className="nav-icon">
-          <Link to="/cart" className={`nav-link ${darkMode ? 'dark' : ''}`} onClick={handleLinkClick}>
-            <FontAwesomeIcon icon={faCartShopping} className="font" /> <br />
-          </Link>
-        </li>
+       
       </ul>
     </nav>
   );

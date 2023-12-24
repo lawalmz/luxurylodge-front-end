@@ -926,33 +926,6 @@ h2 {
   align-items: baseline; /* Add this line to align items on the baseline */
   margin-top: 20px;
 }
-.filter-text {
-  margin-right: 10px; /* Adjust the margin to your preference */
-}
-
-.filter-icon hr {
-  border: none;
-  height: 2px;
-  background-color: black;
-  margin: 6px 0;
-}
-
-.filter-icon hr:first-child {
-  width: 30px;
-}
-
-.filter-icon hr:nth-child(2) {
-  width: 25px;
-}
-
-.filter-icon hr:last-child {
-  width: 20px;
-}
-.f_name{
-  display: flex;
-  padding: 0 20px;
-}
-
 
 .cardStyle {
   height: 300px;
@@ -968,10 +941,14 @@ h2 {
 
 .cardStyle img {
   flex: 0 0 40%;
-  margin-right: 20px;
+  width: 120%; /* Set a specific width for the image */
   border-radius: 10px;
-  overflow: hidden;
+  object-fit: cover;
+  margin-right: 0;
+  aspect-ratio: 3/2;
+  
 }
+
 
 .cardStyle .textStyle {
   flex: 1; 
@@ -980,7 +957,7 @@ h2 {
 }
 
 .cardStyle h1 {
-  font-size: 100px; 
+  font-size: 70px; 
   margin-bottom: 10px;
 }
 
@@ -991,12 +968,14 @@ h2 {
 
 .cardStyle button {
   padding: 10px 20px;
-  font-size: 18px; 
+  font-size: 25px; 
   background-color: #4CAF50;
   color: #ffffff; 
   border: none;
-  border-radius: 5px;
+  border-radius: 20px;
   cursor: pointer;
+  width: 30%;
+  height: 30%;
 }
 
 @media (max-width: 768px) {
@@ -1006,6 +985,7 @@ h2 {
   }
 
   .cardStyle img {
+    width: 100%; 
     flex: 100%; 
     margin-right: 0;
     margin-bottom: 20px; 
@@ -1020,7 +1000,10 @@ h2 {
   }
 
   .cardStyle button {
-    font-size: 1.5em;
+    font-size:15;
+    width: 80%;
+    height: 20%;
+    
   }
 }
 
@@ -1036,8 +1019,8 @@ h2 {
   display: flex;
   gap: 0; 
   flex-wrap: wrap;
-  margin-left: 10%;
-  margin-top: 10%;
+  margin-left: 8%;
+  margin-right: 8%;
   border-radius: 25px;
   
 }
@@ -1075,4 +1058,54 @@ h2 {
   margin-top: 23px;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
+  
+}
+
+.dark .dark-label {
+  color: white; /* Adjust the color as needed */
+}
+
+@media (max-width: 768px) {
+  .form-element input ,
+  .form-element select{
+    width: 130px;
+    
+   
+  }
+
+  .p_container{
+    margin-left: 5px;
+  }
+  .check-in{
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+  }
+  .check-out{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+
+  }
+  .select-box{
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+  }
+  .select-box2{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+  .room{
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+  .search-button{
+    margin-top: 20px;
+    width: 98%;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+  
+  
 }

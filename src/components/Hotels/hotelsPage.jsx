@@ -1,15 +1,53 @@
-
-import React from "react";
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import Nav from "../home/Nav";
-import Footer from "../home/footer"
-import HotelsCard from "./h_card"
-import details from "./details";
-import { Link } from 'react-router-dom';
-
-
+import Nav from '../home/Nav';
+import Footer from '../home/footer';
+import HotelsCard from './h_card';
+import Fm from './fm';
 
 function Hotels({ darkMode }) {
+  const [hotels, setHotels] = useState(() => {
+ 
+    const storedHotels = localStorage.getItem('hotels');
+    return storedHotels ? JSON.parse(storedHotels) : [];
+  });
+
+  useEffect(() => {
+  
+    localStorage.setItem('hotels', JSON.stringify(hotels));
+  }, [hotels]);
+
+  const fetchHotels = async () => {
+    try {
+      const response = await fetch('http://localhost:3001/hotels');
+      const data = await response.json();
+      setHotels(data.hotels);
+    } catch (error) {
+      console.error('Error fetching hotel data:', error.message);
+    }
+  };
+
+  const handleFormSubmit = async (formData) => {
+    try {
+      const response = await fetch('http://localhost:3001/hotels', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        setHotels(result.hotels);
+      } else {
+        console.error('Failed to modify data:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error during form submission:', error);
+    }
+  };
+
   return (
     <div>
       <Nav />
@@ -25,37 +63,25 @@ function Hotels({ darkMode }) {
           destination. With intuitive features, real-time availability, and a commitment
           to exceptional service, embark on a stress-free journey of reserving the perfect
           stay. Your ideal hotel experience begins here, where every click brings you closer
-          to a memorable adventure.</p>
+          to a memorable adventure
+        </p>
         <hr />
-        <div className={`p_container ${darkMode ? "dark" : ""}`} >
-          <p className="h_p">{details.length} Hotels Available</p>
-          <div className="f_name">
-            <p className="filter-text">Filter</p>
-            <Link to="/filter">
-            <div className={`filter-icon ${darkMode ? "dark" : ""}`}>
-              <hr></hr>
-              <hr></hr>
-              <hr></hr>
-            </div>
-            </Link>
+        <br/>
+        <br/>
 
-          </div>
-
-        </div>
+        <Fm onFormSubmit={handleFormSubmit} />
+        <p className="h_p">{hotels.length} Hotels Available in</p>
         <div style={{ margin: '10px 0' }}>
-  {details.map((d, index) => (
-    <div key={index} style={{ marginBottom: '30px' }}>
-      <HotelsCard
-        title={d.title}
-        description={d.description}
-        backgroundImage={d.backgroundImage}
-      />
-    </div>
-  ))}
-</div>
-
-
-
+          {hotels.map((hotel, index) => (
+            <div key={index} style={{ marginBottom: '30px' }}>
+              <HotelsCard
+                title={hotel.name}
+                description={hotel.address}
+                backgroundImage={hotel.image}
+              />
+            </div>
+          ))}
+        </div>
       </div>
       <Footer />
     </div>

@@ -7,12 +7,12 @@ function Card(props) {
 
   return (
     <div className="cardStyle"  >
-      <div >
+      <div className="cd" >
         {/* Image on the left */}
         <img
           src={props.backgroundImage}
           alt={props.title}
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          style={{  height: '100%', objectFit: 'cover' }}
         />
       </div>
       <div className="textStyle">

@@ -1,11 +1,10 @@
-// store.jsx
 import { createStore } from 'redux';
 import Cookies from 'js-cookie';
 
 // Action types
 const TOGGLE_DARK_MODE = 'TOGGLE_DARK_MODE';
 const TOGGLE_MENU = 'TOGGLE_MENU';
-const CLOSE_MENU = 'CLOSE_MENU'; // Add this action type
+const CLOSE_MENU = 'CLOSE_MENU'; 
 
 // Action creators
 export const toggleDarkMode = () => ({ type: TOGGLE_DARK_MODE });
@@ -26,6 +25,11 @@ const initialState = {
     { id: 7, icon: 'bed', title: 'ROOMS' },
   ],
 };
+
+
+
+// craete a pop up message to tell a user how are cookies handle in this website to make things legal 
+
 
 // Reducer
 const rootReducer = (state = initialState, action) => {
