@@ -10,8 +10,17 @@ function Cards(props) {
   
   return (
     <div className={`card ${props.darkMode ? "dark" : ""}`} style={cardStyle}>
-      <h1>{props.title}</h1>
-      <p>{props.description}</p>
+
+      <h1 className="c_hi">{props.title}</h1>
+     
+       <img
+        src={props.flagImageSrc}
+        alt={` ${props.title}`}
+        className="card-flag"
+      />
+       
+    
+
     </div>
   );
 }

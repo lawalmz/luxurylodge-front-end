@@ -62,7 +62,7 @@ function Section2({ darkMode, cardsData, heading, caption }) {
             <Cards
               darkMode={darkMode}
               title={card.title}
-              description={card.description}
+              flagImageSrc={card.flag}
               backgroundImage={card.backgroundImage}
               style={{
                 flex: "0 0 300px",

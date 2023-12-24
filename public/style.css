@@ -230,15 +230,14 @@
 
 
 .card {
-
   background: gray;
   border-radius: 8px;
-
   text-align: center;
   height: 300px;
   color: black;
   cursor: pointer;
-
+  padding-top: 20px; /* Adjust the value as needed */
+  display: flex;
 }
 
 .slick-slide>div {
@@ -249,47 +248,36 @@
   margin: 0 -10px;
 }
 
-
 .slick-next:before {
   color: gray !important;
-
 }
 
 .slick-prev:before {
   color: gray !important;
- 
 }
-
 
 .slick-dots li button:before {
   color: gray !important;
-
 }
-
 
 @media (max-width: 480px) {
   .slick-slider {
     max-width: 300px;
     margin: 0 auto;
-
   }
-
- 
-
 }
-
-
-
-
-
 
 .card h1 {
-  margin-top: 0;
-  font-size: 24px;
+  font-size: 30px;
+  /* margin-right: 70%; */
+  margin-left: 20px;
 }
 
-.card p {
-  font-size: 16px;
+.card-flag {
+  width: 50px; 
+  height: auto; 
+  margin-bottom: 82%;
+  padding-left: 5px;
 }
 
 .cards-wrapper {
@@ -305,8 +293,6 @@
     width: 100%;
   }
 }
-
-
 
 
 
