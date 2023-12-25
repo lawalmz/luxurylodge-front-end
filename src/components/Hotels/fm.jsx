@@ -21,10 +21,25 @@ const Fm = ({ darkMode, onFormSubmit, fetchHotels }) => {
 
   const handleSearch = async () => {
     try {
-      // Save the form data to localStorage
+
+      if (!formData.location || !formData.checkIn || !formData.checkOut) {
+        alert('Please fill in all form fields');
+        return;
+      }
+  
+      // Check if check-in and check-out dates are valid
+      const currentDate = new Date();
+      const checkInDate = new Date(formData.checkIn);
+      const checkOutDate = new Date(formData.checkOut);
+  
+      if (checkInDate < currentDate || checkOutDate < currentDate || checkOutDate <= checkInDate) {
+        alert('Invalid check-in or check-out date');
+        return;
+      }
+
       localStorage.setItem('formData', JSON.stringify(formData));
   
-      // Submit the form and fetch hotels
+     
       await onFormSubmit(formData);
       setFormData({
         location: '',
@@ -35,9 +50,9 @@ const Fm = ({ darkMode, onFormSubmit, fetchHotels }) => {
         rooms: 1,
       });
       await fetchHotels();
-  
-      // Reload the page
-      window.location.reload();
+      setTimeout(() => {
+        window.location.reload();
+      }, 100);
     } catch (error) {
       console.error('Error during form submission:', error);
     }

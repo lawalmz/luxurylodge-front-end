@@ -70,7 +70,7 @@ function Hotels({ darkMode }) {
         <br/>
 
         <Fm onFormSubmit={handleFormSubmit} />
-        <p className="h_p">{hotels.length} Hotels Available in</p>
+        <p className="h_p"> Hotels Available </p>
         <div style={{ margin: '10px 0' }}>
           {hotels.map((hotel, index) => (
             <div key={index} style={{ marginBottom: '30px' }}>
