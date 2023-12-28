@@ -1,24 +1,25 @@
 import React from "react";
 
 
-function Card(props) {
- 
 
+function Card({ title, description, backgroundImage, hotelId, onCheckAvailability }) {
+  const handleCheckAvailabilityClick = () => {
+    onCheckAvailability(hotelId);
+  };
 
   return (
-    <div className="cardStyle"  >
-      <div className="cd" >
-        {/* Image on the left */}
+    <div className="cardStyle">
+      <div className="cd">
         <img
-          src={props.backgroundImage}
-          alt={props.title}
-          style={{  height: '100%', objectFit: 'cover' }}
+          src={backgroundImage}
+          alt={title}
+          style={{ height: '100%', objectFit: 'cover' }}
         />
       </div>
       <div className="textStyle">
-        <h1 >{props.title}</h1>
-        <p >{props.description}</p>
-        <button >Check Availability</button>
+        <h1>{title}</h1>
+        <p>{description}</p>
+        <a href="/ht"><button onClick={handleCheckAvailabilityClick}>Check Availability</button></a> 
       </div>
     </div>
   );

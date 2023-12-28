@@ -62,6 +62,7 @@ function Nav({ darkMode, toggleDarkMode, toggleMenu, isMenuOpen, closeMenu }) {
         </li>
        
       </ul>
+      
     </nav>
   );
 }

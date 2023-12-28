@@ -6,6 +6,8 @@ import HotelsCard from './h_card';
 import Fm from './fm';
 
 function Hotels({ darkMode }) {
+
+  const [selectedHotelData, setSelectedHotelData] = useState(null);
   const [hotels, setHotels] = useState(() => {
  
     const storedHotels = localStorage.getItem('hotels');
@@ -48,6 +50,30 @@ function Hotels({ darkMode }) {
     }
   };
 
+
+
+
+  const handleCheckAvailability = async (hotelId) => {
+    try {
+      const response = await fetch('http://localhost:3001/ht_data', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ hotelId }),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        setSelectedHotelData(result.hotelData);
+      } else {
+        console.error('Failed to fetch detailed hotel data:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error during check availability:', error);
+    }
+  };
+
   return (
     <div>
       <Nav />
@@ -72,16 +98,18 @@ function Hotels({ darkMode }) {
         <Fm onFormSubmit={handleFormSubmit} />
         <p className="h_p"> Hotels Available </p>
         <div style={{ margin: '10px 0' }}>
-          {hotels.map((hotel, index) => (
-            <div key={index} style={{ marginBottom: '30px' }}>
-              <HotelsCard
-                title={hotel.name}
-                description={hotel.address}
-                backgroundImage={hotel.image}
-              />
-            </div>
-          ))}
-        </div>
+        {hotels.map((hotel, index) => (
+          <div key={index} style={{ marginBottom: '30px' }}>
+            <HotelsCard
+              title={hotel.name}
+              description={hotel.address}
+              backgroundImage={hotel.image}
+              hotelId={hotel.id}  
+              onCheckAvailability={handleCheckAvailability}
+            />
+          </div>
+        ))}
+      </div>
       </div>
       <Footer />
     </div>

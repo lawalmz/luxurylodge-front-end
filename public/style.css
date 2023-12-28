@@ -1100,3 +1100,177 @@ h2 {
   
   
 }
+
+
+
+/* PhotoGrid.css */
+.photo-grid-container {
+  margin-left: 3%;
+  max-width:  1200px;  
+}
+
+.main-photo img {
+  max-width: 100%;
+  max-height: 600px; 
+  border-radius: 8px;
+  margin-bottom: 10px;
+  
+}
+
+.thumbnail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 10px;
+  max-width: 800px; 
+  margin: 0 auto;
+}
+
+.thumbnail-item img {
+  width: 100%;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  aspect-ratio: 3/2;
+}
+
+.thumbnail-item.selected img {
+  border: 2px solid #007BFF; /* Border color for the selected thumbnail */
+}
+
+.show-more-container {
+  text-align: center;
+  margin-top: 10px;
+}
+
+button.show-more-button {
+  padding: 8px 16px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+button.show-more-button:hover {
+  background-color: #45a049;
+}
+
+
+
+/* ================================================================================================== */
+/* Add this CSS in your stylesheet */
+
+.table.dark{
+  color: white;
+}
+
+.dark th {
+  background-color: #555;
+}
+
+.dark tr:hover {
+  background-color: #444;
+}
+
+/* Add the rest of your existing styles below */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #f5f5f5;
+}
+
+.room {
+  width: 40px;
+  align-items: center; /* Adjust the width as needed */
+}
+
+.table_btn {
+  padding: 5px 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  width: 70%; /* Adjust the width as needed */
+  height: 150%; /* Adjust the height as needed */
+  border-radius: 10px;
+}
+
+
+.table_btn:hover {
+  background-color: #45a049;
+}
+
+ul {
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  list-style-type: none; /* Remove default list-style */
+}
+
+ul li {
+  margin-bottom: 5px; /* Adjust margin between list items */
+}
+
+@media (max-width: 768px) {
+  /* Hide the table header */
+  /* thead {
+    display: none;
+  } */
+
+  /* Adjust the table cells to stack vertically */
+  th, td {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Add some spacing between stacked cells */
+  /* td {
+    margin-bottom: 10px;
+  } */
+
+  /* Increase font size for room name and guests on smaller screens */
+  .room-name {
+    font-size: 50%;
+    font-weight: bold;
+  }
+  .room{
+    border-radius: 10px;
+    text-align: center;
+    
+  }
+
+  .guests {
+    font-size: 16px;
+  }
+
+  .table_btn {
+    width: 100%;
+    height: 20%; /* Make buttons full width on smaller screens */
+  }
+  th, td {
+    border: 3px solid #ddd; /* Increase the border thickness */
+    padding: 12px; /* Adjust padding for better spacing */
+    /* margin-bottom: 10px;  */
+  }
+
+
+  tr {
+    margin-bottom: 30px;
+    display: block;
+  }
+}
