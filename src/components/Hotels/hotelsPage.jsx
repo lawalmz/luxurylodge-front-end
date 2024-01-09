@@ -1,3 +1,4 @@
+// hotels page 
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import Nav from '../home/Nav';
@@ -7,17 +8,29 @@ import Fm from './fm';
 
 function Hotels({ darkMode }) {
 
-  const [selectedHotelData, setSelectedHotelData] = useState(null);
-  const [hotels, setHotels] = useState(() => {
- 
-    const storedHotels = localStorage.getItem('hotels');
-    return storedHotels ? JSON.parse(storedHotels) : [];
+  const [selectedHotelData, setSelectedHotelData] = useState(() => {
+    const storedSelectedHotelData = localStorage.getItem('selectedHotelData');
+    return storedSelectedHotelData ? JSON.parse(storedSelectedHotelData) : [];
   });
-
-  useEffect(() => {
   
-    localStorage.setItem('hotels', JSON.stringify(hotels));
-  }, [hotels]);
+  useEffect(() => {
+    localStorage.setItem('selectedHotelData', JSON.stringify(selectedHotelData));
+  }, [selectedHotelData]);
+  
+  
+  
+  
+  // Retrieve selectedHotelData from local storage on component mount
+  useEffect(() => {
+    const storedSelectedHotelData = localStorage.getItem('selectedHotelData');
+    if (storedSelectedHotelData) {
+      setSelectedHotelData(JSON.parse(storedSelectedHotelData));
+      // console.log('selectedHotelData:', selectedHotelData);
+    }
+  }, []);
+  
+  const [hotels, setHotels] = useState([]);
+  
 
   const fetchHotels = async () => {
     try {
@@ -50,22 +63,22 @@ function Hotels({ darkMode }) {
     }
   };
 
-
-
-
-  const handleCheckAvailability = async (hotelId) => {
+  const handleCheckAvailability = async (hotelId,title,location) => {
     try {
       const response = await fetch('http://localhost:3001/ht_data', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ hotelId }),
+        body: JSON.stringify({ hotelId,location,title }),
       });
 
       if (response.ok) {
         const result = await response.json();
-        setSelectedHotelData(result.hotelData);
+        setSelectedHotelData(result.imageArray);
+        // console.log(selectedHotelData);
+       
+
       } else {
         console.error('Failed to fetch detailed hotel data:', response.statusText);
       }
@@ -96,19 +109,25 @@ function Hotels({ darkMode }) {
         <br/>
 
         <Fm onFormSubmit={handleFormSubmit} />
+        
+        <br/>
         <p className="h_p"> Hotels Available </p>
+        
         <div style={{ margin: '10px 0' }}>
+        
         {hotels.map((hotel, index) => (
           <div key={index} style={{ marginBottom: '30px' }}>
             <HotelsCard
               title={hotel.name}
-              description={hotel.address}
+              location={hotel.address}
               backgroundImage={hotel.image}
               hotelId={hotel.id}  
               onCheckAvailability={handleCheckAvailability}
             />
           </div>
         ))}
+       
+       
       </div>
       </div>
       <Footer />

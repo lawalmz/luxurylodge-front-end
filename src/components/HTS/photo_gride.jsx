@@ -1,5 +1,6 @@
+//photo grid
 import React, { useState } from 'react';
-
+import { connect } from 'react-redux';
 const PhotoGrid = ({ hotels }) => {
   const [selectedPhoto, setSelectedPhoto] = useState(0);
   const [visibleThumbnails, setVisibleThumbnails] = useState(10); // Set the initial number of visible thumbnails
@@ -15,9 +16,15 @@ const PhotoGrid = ({ hotels }) => {
       setShowMore(false); // Hide "Show More" button when all thumbnails are visible
     }
   };
+  if (!hotels) {
+    return <p>No hotels available.</p>;
+  }
+  // console.log(hotels);
 
   return (
     <div className="photo-grid-container">
+    
+    <br/>
       <div className="main-photo">
         <img src={hotels[selectedPhoto]?.image || 'default-image-url'} alt={`Main Photo`} />
       </div>
@@ -42,5 +49,7 @@ const PhotoGrid = ({ hotels }) => {
     </div>
   );
 };
+
+
 
 export default PhotoGrid;

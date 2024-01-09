@@ -16,7 +16,7 @@ function Nav({ darkMode, toggleDarkMode, toggleMenu, isMenuOpen, closeMenu }) {
     <nav className={`navbar ${isMenuOpen ? 'open' : ''} ${darkMode ? 'dark' : ''}`}>
       {/* ToggleSwitch */}
       <div className="user-toggle-container">
-        <FontAwesomeIcon icon={faUser} className="font user-icon" />
+       <a href='/sn'> <FontAwesomeIcon icon={faUser}  className={`font user-icon ${darkMode ? 'dark' : ''}`} /></a>
        
         <div className="toggle-container">
           <input
@@ -43,7 +43,7 @@ function Nav({ darkMode, toggleDarkMode, toggleMenu, isMenuOpen, closeMenu }) {
           {/* <Link to="/" className={`nav-link ${darkMode ? 'dark' : ''}`} onClick={handleLinkClick}>
             Home
           </Link> */}
-          <a href="/">Home</a> 
+          <a href="/" className={`nav-link ${darkMode ? 'dark' : ''}`}  >Home</a> 
         </li>
         <li>
           <Link to="/about" className={`nav-link ${darkMode ? 'dark' : ''}`} onClick={handleLinkClick}>

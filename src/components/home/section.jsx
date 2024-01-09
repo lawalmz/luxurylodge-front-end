@@ -7,6 +7,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 function Section({ darkMode, cardData }) {
+ 
 
   const settings = {
     dots: false,

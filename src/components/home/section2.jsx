@@ -55,7 +55,7 @@ function Section2({ darkMode, cardsData, heading, caption }) {
     <div className={`section ${darkMode ? "dark" : ""}`}>
       <h1>{heading}</h1>
       <p>{caption}</p>
-
+    <a href="/hotels">
       <Slider {...settings}>
         {cardsData.map((card, index) => (
           <div key={index} className="carousel-item">
@@ -72,6 +72,7 @@ function Section2({ darkMode, cardsData, heading, caption }) {
           </div>
         ))}
       </Slider>
+      </a>
     </div>
   );
 }

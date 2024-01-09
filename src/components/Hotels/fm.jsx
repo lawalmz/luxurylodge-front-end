@@ -1,3 +1,4 @@
+// fm component
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
@@ -11,6 +12,8 @@ const Fm = ({ darkMode, onFormSubmit, fetchHotels }) => {
     rooms: 1,
   });
 
+  const [loading, setLoading] = useState(false);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -21,25 +24,25 @@ const Fm = ({ darkMode, onFormSubmit, fetchHotels }) => {
 
   const handleSearch = async () => {
     try {
-
       if (!formData.location || !formData.checkIn || !formData.checkOut) {
         alert('Please fill in all form fields');
         return;
       }
-  
+
+      setLoading(true); // Set loading to true when the search button is clicked
+
       // Check if check-in and check-out dates are valid
       const currentDate = new Date();
       const checkInDate = new Date(formData.checkIn);
       const checkOutDate = new Date(formData.checkOut);
-  
+
       if (checkInDate < currentDate || checkOutDate < currentDate || checkOutDate <= checkInDate) {
         alert('Invalid check-in or check-out date');
         return;
       }
 
       localStorage.setItem('formData', JSON.stringify(formData));
-  
-     
+
       await onFormSubmit(formData);
       setFormData({
         location: '',
@@ -49,12 +52,12 @@ const Fm = ({ darkMode, onFormSubmit, fetchHotels }) => {
         children: 0,
         rooms: 1,
       });
+
       await fetchHotels();
-      setTimeout(() => {
-        window.location.reload();
-      }, 100);
     } catch (error) {
       console.error('Error during form submission:', error);
+    } finally {
+      setLoading(false); // Set loading back to false regardless of success or failure
     }
   };
   
@@ -142,7 +145,7 @@ const Fm = ({ darkMode, onFormSubmit, fetchHotels }) => {
       </label>
 
       <button type="button" onClick={handleSearch} className="search-button">
-        Search
+      {loading ? 'Searching...' : 'Search'}
       </button>
     </form>
   );

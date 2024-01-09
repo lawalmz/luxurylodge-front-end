@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-function RoomTable({ rooms, darkMode }) {
+import Modal from 'react-modal';
+import PaymentGateway from './paymentGetaway';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+function RoomTable({ rooms, darkMode,hotelname }) {
+  const [selectedReservation, setSelectedReservation] = useState(null);
   const [selectedRooms, setSelectedRooms] = useState({});
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
 
   const handleRoomTypeChange = (roomType, value) => {
     setSelectedRooms((prevRooms) => {
@@ -23,8 +30,13 @@ function RoomTable({ rooms, darkMode }) {
   };
 
   const handleReservation = (roomType, reservationType) => {
-    const { roomNumber, numberOfGuests } = selectedRooms[roomType] || { roomNumber: '', numberOfGuests: 0 };
-
+    const { roomNumber, numberOfGuests } = selectedRooms[roomType] || {
+      roomNumber: '',
+      numberOfGuests: 0,
+    };
+  
+    const roomDetails = rooms.find((room) => room.roomType === roomType);
+  
     // Add validation for the number of guests based on room type
     let isValidReservation = true;
     switch (roomType) {
@@ -40,15 +52,33 @@ function RoomTable({ rooms, darkMode }) {
       default:
         isValidReservation = true; // Allow reservations for other room types
     }
-
+  
     if (isValidReservation) {
-      alert(`Room Type: ${roomType}, Room Number: ${roomNumber}, Guests: ${numberOfGuests}, Reservation Type: ${reservationType}`);
-      // Implement your reservation logic here
+      const reservationDetails = {
+        roomType,
+        roomNumber,
+        numberOfGuests,
+        pricePerNight: parseFloat(roomDetails.pricePerNight.replace('$', '')), // Parse the price to a number
+        reservationType,
+      };
+      setSelectedReservation(reservationDetails);
+      if (reservationType === 'Reserve and Pay') {
+        setIsModalOpen(true);
+        document.body.style.overflow = 'hidden';
+      }
     } else {
       alert(`Invalid number of guests for ${roomType} room type`);
       // You can customize the alert message based on your needs
     }
   };
+  
+
+const closeModal = () => {
+  setSelectedReservation(null);
+  setIsModalOpen(false);
+  document.body.style.overflow = 'auto';
+};
+
 
   return (
     <div>
@@ -114,6 +144,23 @@ function RoomTable({ rooms, darkMode }) {
           ))}
         </tbody>
       </table>
+      <Modal isOpen={isModalOpen} onRequestClose={closeModal} contentLabel="Payment Details Modal" className={`md ${darkMode ? "dark" : ""}`}>
+        <h2>{hotelname}</h2>
+        {selectedReservation && (
+          <div>
+            <p>Room Type: {selectedReservation.roomType}</p>
+            <p>Room Number: {selectedReservation.roomNumber}</p>
+            <p>Number of Guests: {selectedReservation.numberOfGuests}</p>
+            <p>Total amount = {selectedReservation.pricePerNight}$</p>
+          </div>
+        )}
+        <button className="close-button" onClick={closeModal}>
+        <FontAwesomeIcon icon={faTimes} />
+      </button>
+       
+        {selectedReservation && <PaymentGateway reservationDetails={selectedReservation} onClose={closeModal} />}
+
+      </Modal>
     </div>
   );
 }

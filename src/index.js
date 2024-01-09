@@ -8,6 +8,9 @@ import App from './components/home/App';
 import Hotels from './components/Hotels/hotelsPage';
 import Fm from './components/Hotels/fm';
 import HT from './components/HTS/ht'
+import RegisterPage from './components/signup/Register';
+import SignIn from './components/signup/signIn';
+
 
 import {
   createBrowserRouter,
@@ -31,6 +34,16 @@ const router = createBrowserRouter([
     path: '/ht',
     element: <HT/>,
   },
+  {
+    path: '/sn',
+    element: <SignIn/>,
+  },
+  {
+    path: '/rg',
+    element: <RegisterPage/>,
+  },
+  
+  
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

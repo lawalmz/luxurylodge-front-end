@@ -9,7 +9,7 @@ function Section3({ darkMode }) {
   
   return (
     <div className={`section ${darkMode ? "dark" : ""}`}>
-      <div className={`Pcontainer ${darkMode ? "dark" : ""}`}>
+    <div className={`Pcontainer ${darkMode ? "dark" : ""}`}>
         <img src={imageUrl} alt="Luxury Lodge" className="section3-img" />
         <div className={`vertical-line ${darkMode ? "dark" : ""}`}></div>
         <div className="text">
