@@ -10,6 +10,9 @@ const PaymentGateway = ({ darkMode, reservationDetails, onClose }) => {
     const [paymentStatus, setPaymentStatus] = useState(null);
     const [isProcessing, setIsProcessing] = useState(false);
 
+    
+
+
     const handleCardNumberChange = (e) => {
         setCardNumber(e.target.value);
     };

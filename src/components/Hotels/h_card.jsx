@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import { Link } from "react-router-dom";
 
 function Card({ title,location, backgroundImage, hotelId, onCheckAvailability,hotelLocation }) {
   const [availabilityClicked, setAvailabilityClicked] = useState(false);
@@ -10,12 +10,17 @@ function Card({ title,location, backgroundImage, hotelId, onCheckAvailability,ho
   };
 
   useEffect(() => {
-  
+    // Check if availabilityClicked is true, then wait 5 seconds and simulate a click on the "to" button
     if (availabilityClicked) {
-      const timeoutId = setTimeout(() => {  
+      const timeoutId = setTimeout(() => {
+        // You can get the "to" button element using a ref
         const toButton = document.getElementById('toButton');
+
+        // Simulate a click on the "to" button
         toButton && toButton.click();
       }, 1000);
+
+      // Clean up the timeout to avoid memory leaks
       return () => clearTimeout(timeoutId);
     }
   }, [availabilityClicked]);

@@ -35,28 +35,7 @@ function Ht({ darkMode }) {
   ];
 
 
-  // const hotelDetails = {
-  //   description: {
-  //     name: "Sharaton Hotel",
-  //     location: "Ladi Kwali Way, Maitama, Abuja, Nigeria, is a luxury hotel located. Located in the classy Maitama area",
-  //     description: "This hotel is bla bla bla bla bla bla bla blabla bla bla blabla bla bla blabla bla bla blabla bla bla blabla bla bla blabla bla bla blabla bla bla blabla bla bla blabla bla bla blabla bla bla blabla bla bla blabla bla bla blabla bla bla blabla bla bla blabla bla bla blabla bla bla blabla bla bla blabla bla bla blabla bla bla bla"
-  //   },
-  //   images: [
-  //     { image: 'https://i.pinimg.com/564x/ef/c6/62/efc662ad7d783e588fcf5f8a2f28693f.jpg' },
-  //     { image: 'https://i.pinimg.com/564x/1a/55/ad/1a55ad12640a86cea9277c19cbc8b37f.jpg' },
-  //     { image: 'https://i.pinimg.com/564x/6b/61/9b/6b619b18f89bcdceec7e223c28e99f8e.jpg' },
-  //     { image: 'https://i.pinimg.com/564x/f9/53/67/f95367c4ab318843d77c79a7216b9701.jpg' },
-  //     { image: 'https://i.pinimg.com/564x/32/10/df/3210dfc221d2d41195519e8457d0fdc2.jpg' },
-  //     { image: 'https://i.pinimg.com/564x/3a/aa/b8/3aaab8e5a4ab9dc9e665ce5640b4d4c1.jpg' },
-  //     { image: 'https://i.pinimg.com/564x/6e/97/8f/6e978fabb958c5c4fa891f2b82c53f49.jpg' },
-  //     { image: 'https://i.pinimg.com/564x/22/92/35/22923576c6e59e2f24efde65e99a2804.jpg' },
-  //     { image: 'https://i.pinimg.com/564x/d5/73/9a/d5739a4bdfdae6e737475ecc43563607.jpg' },
-  //     { image: 'https://i.pinimg.com/564x/6b/61/9b/6b619b18f89bcdceec7e223c28e99f8e.jpg' },
-  //     { image: 'https://i.pinimg.com/564x/f9/53/67/f95367c4ab318843d77c79a7216b9701.jpg' },
-  //     { image: 'https://i.pinimg.com/564x/32/10/df/3210dfc221d2d41195519e8457d0fdc2.jpg' },
-  //     { image: 'https://i.pinimg.com/564x/3a/aa/b8/3aaab8e5a4ab9dc9e665ce5640b4d4c1.jpg' },
-  //   ],
-  // };
+
 
 
 

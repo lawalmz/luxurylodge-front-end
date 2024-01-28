@@ -6,10 +6,15 @@ import { Provider } from 'react-redux';
 import store from './components/home/store';
 import App from './components/home/App';
 import Hotels from './components/Hotels/hotelsPage';
-import Fm from './components/Hotels/fm';
 import HT from './components/HTS/ht'
 import RegisterPage from './components/signup/Register';
 import SignIn from './components/signup/signIn';
+import ForgotPasswordPage from './components/signup/forgotPass';
+import Profile from './components/signup/profile'
+import SuccessPage from './components/HTS/success';
+import ReservationList from './components/HTS/ReservationList';
+import AboutUsPage from './components/HTS/AboutUs';
+
 
 
 import {
@@ -27,10 +32,6 @@ const router = createBrowserRouter([
     element: <Hotels />,
   },
   {
-    path: '/t',
-    element: <Fm/>,
-  },
-  {
     path: '/ht',
     element: <HT/>,
   },
@@ -42,6 +43,29 @@ const router = createBrowserRouter([
     path: '/rg',
     element: <RegisterPage/>,
   },
+  {
+    path: '/fg',
+    element: <ForgotPasswordPage/>,
+  },
+  {
+    path: '/profile',
+    element: <Profile/>,
+  },
+  {
+    path: '/success',
+    element: <SuccessPage/>,
+  },
+  
+  {
+    path: '/reserve',
+    element: <ReservationList/>,
+  },
+
+  {
+    path: '/aboutus',
+    element: <AboutUsPage/>,
+  },
+  
   
   
 ]);

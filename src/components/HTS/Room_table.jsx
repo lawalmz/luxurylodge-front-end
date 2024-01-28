@@ -1,13 +1,36 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import Modal from 'react-modal';
 import PaymentGateway from './paymentGetaway';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import {firebaseApp } from '../signup/firebase'; 
+import { auth } from '../signup/firebase'; 
+import {
+  getFirestore,
+  collection,
+  addDoc,
+} from 'firebase/firestore';
 function RoomTable({ rooms, darkMode,hotelname }) {
   const [selectedReservation, setSelectedReservation] = useState(null);
   const [selectedRooms, setSelectedRooms] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+
+  const [parsedSelectedHotelData, setParsedSelectedHotelData] = useState(null);
+
+
+ 
+
+
+  useEffect(() => {
+    // Retrieve data from local storage
+    const storedSelectedHotelData = localStorage.getItem('selectedHotelData');
+    const parsedData = storedSelectedHotelData ? JSON.parse(storedSelectedHotelData) : "";
+
+
+    setParsedSelectedHotelData(parsedData);
+  }, []);
 
 
   const handleRoomTypeChange = (roomType, value) => {
@@ -29,7 +52,7 @@ function RoomTable({ rooms, darkMode,hotelname }) {
     });
   };
 
-  const handleReservation = (roomType, reservationType) => {
+  const handleReserve = async (roomType) => {
     const { roomNumber, numberOfGuests } = selectedRooms[roomType] || {
       roomNumber: '',
       numberOfGuests: 0,
@@ -59,19 +82,82 @@ function RoomTable({ rooms, darkMode,hotelname }) {
         roomNumber,
         numberOfGuests,
         pricePerNight: parseFloat(roomDetails.pricePerNight.replace('$', '')), // Parse the price to a number
-        reservationType,
+        reservationType: 'Reserve',
+        CheckIn: parsedSelectedHotelData[0].checkIn,
+        CheckOut: parsedSelectedHotelData[0].checkOut,
+        Totalamount: parseInt(roomDetails.pricePerNight.replace('$', '')) * parseInt(parsedSelectedHotelData[0].day)+"$", // Calculate the total amount
+        Image:(parsedSelectedHotelData[0].image),
+        status: 'Unpaid',
+        userId: auth.currentUser.uid, // Include user ID in reservation details
       };
+  
       setSelectedReservation(reservationDetails);
-      if (reservationType === 'Reserve and Pay') {
-        setIsModalOpen(true);
-        document.body.style.overflow = 'hidden';
+  
+      // Save reservation data to Firestore
+      try {
+        const reservationsCollection = collection(getFirestore(firebaseApp), 'Reservations');
+        await addDoc(reservationsCollection, reservationDetails);
+        console.log('Reservation data saved to Firestore successfully!');
+        window.location.href = '/success';
+      } catch (error) {
+        console.error('Error saving reservation data to Firestore: ', error.message);
       }
     } else {
       alert(`Invalid number of guests for ${roomType} room type`);
-      // You can customize the alert message based on your needs
     }
   };
   
+  const handleReserveAndPay = (roomType) => {
+    const { roomNumber, numberOfGuests } = selectedRooms[roomType] || {
+      roomNumber: '',
+      numberOfGuests: 0,
+    };
+  
+    const roomDetails = rooms.find((room) => room.roomType === roomType);
+  
+    // Add validation for the number of guests based on room type
+    let isValidReservation = true;
+    switch (roomType) {
+      case 'deluxe':
+        isValidReservation = numberOfGuests <= 2;
+        break;
+      case 'family':
+        isValidReservation = numberOfGuests <= 4;
+        break;
+      case 'suite':
+        isValidReservation = numberOfGuests <= 3;
+        break;
+      default:
+        isValidReservation = true; // Allow reservations for other room types
+    }
+  
+    if (isValidReservation) {
+      const reservationDetails = {
+        roomType,
+        roomNumber,
+        numberOfGuests,
+        pricePerNight: parseFloat(roomDetails.pricePerNight.replace('$', '')), // Parse the price to a number
+        reservationType: 'Reserve and Pay',
+        CheckIn: parsedSelectedHotelData[0].checkIn,
+        CheckOut: parsedSelectedHotelData[0].checkOut,
+        Totalamount: parseFloat(roomDetails.pricePerNight.replace('$', '')) * parseInt(parsedSelectedHotelData[0].day), // Calculate the total amount
+        status: 'paid',
+        Image:(parsedSelectedHotelData[0].image),
+        userId: auth.currentUser.uid, // Include user ID in reservation details
+      };
+
+  
+      setSelectedReservation(reservationDetails);
+  
+      // Open the modal for payment
+      setIsModalOpen(true);
+      document.body.style.overflow = 'hidden';
+    } else {
+      alert(`Invalid number of guests for ${roomType} room type`);
+    }
+  };
+  
+
 
 const closeModal = () => {
   setSelectedReservation(null);
@@ -135,10 +221,11 @@ const closeModal = () => {
                 </select>
               </td>
               <td>
-                <button className='table_btn' onClick={() => handleReservation(room.roomType, 'Reserve')}>Reserve</button>
-                <br />
-                <br />
-                <button  className='table_btn' onClick={() => handleReservation(room.roomType, 'Reserve and Pay')}>Reserve and Pay</button>
+              <button className='table_btn' onClick={() => handleReserve(room.roomType)}>Reserve</button>
+<br />
+<br />
+<button className='table_btn' onClick={() => handleReserveAndPay(room.roomType)}>Reserve and Pay</button>
+
               </td>
             </tr>
           ))}
@@ -151,7 +238,10 @@ const closeModal = () => {
             <p>Room Type: {selectedReservation.roomType}</p>
             <p>Room Number: {selectedReservation.roomNumber}</p>
             <p>Number of Guests: {selectedReservation.numberOfGuests}</p>
-            <p>Total amount = {selectedReservation.pricePerNight}$</p>
+            <p>checkIn: {parsedSelectedHotelData[0].checkIn}</p>
+            <p>checkOut: {parsedSelectedHotelData[0].checkOut}</p>
+            <p>Total amount = {parseInt(selectedReservation.pricePerNight)*parseInt(parsedSelectedHotelData[0].day)}$</p>
+           
           </div>
         )}
         <button className="close-button" onClick={closeModal}>

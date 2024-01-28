@@ -12,6 +12,7 @@ import d from "./d";
 import Section from "./section.jsx"
 import data from "./data"
 import input from "./note.js"
+import data2 from "./data2.js"
 
 
 function App() {
@@ -23,7 +24,7 @@ function App() {
         <Section1 />
         <Section2 cardsData={data}  heading={input[0].headning} caption={input[0].caption}/>
         <Section3 />
-        <Section2 cardsData={data}  heading={input[1].headning} caption={input[1].caption}/>
+        <Section2 cardsData={data2}  heading={input[1].headning} caption={input[1].caption}/>
         <Section4 data={d}/>
        <Section/>
        

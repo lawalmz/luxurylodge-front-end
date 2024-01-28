@@ -2,7 +2,7 @@ const cardsData = [
     {
         title: "Paris",
         flag: "/images/france.svg",
-        backgroundImage: "https://i.pinimg.com/564x/34/fe/dd/34feddf8a34db6f4ed6cbfaac066bab7.jpg",
+        backgroundImage:"/images/p.jpg"
       },
       {
           title: "Spain",
@@ -15,14 +15,14 @@ const cardsData = [
         backgroundImage: "https://i.pinimg.com/564x/5b/3f/3e/5b3f3e06bd1671aa958d8c4a26710073.jpg",
       },
       {
-          title: "paris",
-          description: "most people go to paris",
-          backgroundImage: "paris.jpg",
+          title: "England",
+          description: "/images/e.png",
+          backgroundImage: "https://i.pinimg.com/564x/88/3e/b1/883eb16c92537b4ee7f2bafc944cd523.jpg",
       },
       {
-        title: "paris",
+        title: "Russia",
         description: "most people go to paris",
-        backgroundImage: "paris.jpg",
+        backgroundImage: "https://i.pinimg.com/474x/a2/c0/fd/a2c0fdee343d009a0fcee6a71e6f894a.jpg",
       },
 
 // Your card data

@@ -5,7 +5,6 @@ import Nav from '../home/Nav';
 import Footer from '../home/footer';
 import HotelsCard from './h_card';
 import Fm from './fm';
-
 function Hotels({ darkMode }) {
 
   const [selectedHotelData, setSelectedHotelData] = useState(() => {
@@ -42,14 +41,21 @@ function Hotels({ darkMode }) {
     }
   };
 
+  // let formDataTemp;
+
+  
+
   const handleFormSubmit = async (formData) => {
     try {
+      // formDataTemp = formData;
+      // console.log(formDataTemp);
       const response = await fetch('http://localhost:3001/hotels', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
+        
       });
 
       if (response.ok) {

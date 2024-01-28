@@ -116,6 +116,8 @@
 
 }
 
+
+
 .user-toggle-container {
   display: flex;
   align-items: center;
@@ -124,6 +126,14 @@
 .user-icon {
   margin-right: 10px; /* Adjust the margin as needed */
   color: #333;
+  
+}
+.user-ico{
+  width: 35px; /* Set the desired width */
+  height: 35px; /* Set the desired height */
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
 }
 
 .user-icon.dark {
@@ -945,7 +955,7 @@
 }
 
 .cardStyle h1 {
-  font-size: 70px; 
+  font-size: 50px; 
   margin-bottom: 10px;
 }
 
@@ -1324,6 +1334,9 @@ ul li {
   select {
     width: 100%;
   }
+
+  
+
 }
 
 .input-field,
@@ -1371,7 +1384,7 @@ ul li {
 
 .custom-radio {
   opacity: 0;
-  position: absolute;
+  position: fixed;
   z-index: 1;
   
 }
@@ -1418,6 +1431,28 @@ a {
   color: blue;
   text-decoration: none;
 }
+
+
+.phone-input-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.phone-input {
+  width: 100%;
+}
+
+.phone-input input {
+  padding: 15px;
+  border-radius: 25px;
+  margin-top: 5px;
+  width: calc(100% - 30px); /* Adjust the width to accommodate padding */
+  font-size: 16px;
+  border: 1px solid #ccc; /* Add border style */
+}
+
+
 
 /* ======================== payment getaway ============================ */
 
@@ -1527,4 +1562,329 @@ a {
 }
 
 
+/* ==================================forgot password ====================================== */
+/* Add this CSS to your stylesheets or create a new stylesheet */
 
+.forgot-password-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 50px;
+}
+
+.forgot-password-title {
+  color: #333;
+}
+
+.forgot-password-form-group {
+  margin-bottom: 20px;
+}
+
+.forgot-password-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #333;
+}
+
+.forgot-password-input-field {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.forgot-password-submit-btn {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.forgot-password-submit-btn:hover {
+  background-color: #45a049;
+}
+
+.forgot-password-back-link {
+  display: block;
+  margin-top: 20px;
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.forgot-password-back-link:hover {
+  color: #4caf50;
+}
+
+
+/* ============================= profile =========================*/
+
+.profile-container {
+  background-color:#F6FEFF;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  width: 80%; /* Adjust the width as needed */
+  margin: 20px auto;
+  overflow: hidden;
+}
+
+.profile-container.dark{
+  background-color: #374151; /* Dark mode card background color */
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1); /* Dark mode shadow */
+  color: #ffffff; /* Dark mode text color */
+}
+
+.profile-header {
+  background-color: #c8ddeb;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+}
+
+.profile-header.dark{
+  background-color: #191e27;
+ 
+}
+
+.profile-image {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.profile-body {
+  padding: 20px;
+}
+
+.profile-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.profile-item label {
+  font-weight: bold;
+  font-size: 20px; /* Adjust the font size as needed */
+  padding-right: 10px;
+}
+
+.data {
+  color: #555;
+  flex-grow: 1;
+}
+
+
+
+.edit-btn {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.profile-container hr {
+  margin: 15px 0;
+  border: 0;
+  border-top: 1px solid #ccc;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 600px) {
+  .profile-container {
+    width: 90%;
+  }
+}
+
+
+
+
+.mode-item {
+  display: flex;
+  justify-content: space-between; /* Adjust as needed */
+  align-items: center;
+}
+
+.mode-item label {
+  margin-right: 10px; /* Adjust the margin as needed */
+}
+
+.t-container {
+  display: flex;
+  align-items: center;
+}
+
+
+
+
+.reservation-list-container {
+  position: relative;
+  background-color: #F6FEFF;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 20px; /* Adjust padding as needed */
+}
+.reservation-list-container.dark{
+  background-color: black;
+}
+.reservation-list-container.dark h2 {
+  color: white;
+}
+.heading_reserve {
+  font-size: 24px;
+  margin-bottom: 10px;
+  margin-left: 40%;
+  
+}
+
+.reservation-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  
+}
+
+.card_reserve {
+  background-color: #ffffff; /* White background */
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  padding: 20px;
+  margin-bottom: 20px; /* Add margin bottom to create space between cards */
+  margin-right: 20px; /* Add margin right to create space between cards */
+  transition: box-shadow 0.3s ease; /* Smooth transition on hover */
+  display: flex;
+  align-items: center;
+}
+
+.room-image {
+  width: 230px;
+  margin-right: 20px;
+  padding-left: 20px;
+  height: 230px;
+  border-radius: 12px;
+
+
+}
+
+
+
+.card_reserve:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Increased shadow on hover */
+}
+
+.card_reserve h3 {
+  margin-top: 0; /* Remove top margin for better alignment */
+}
+
+.card_reserve p {
+  margin-bottom: 10px; /* Adjust spacing between paragraphs */
+}
+
+
+
+.card_reserve.dark {
+  background-color: #374151; /* Dark mode card background color */
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1); /* Dark mode shadow */
+  color: #ffffff; /* Dark mode text color */
+}
+
+@media screen and (max-width: 768px) {
+  .reservation-cards-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  
+  .heading_reserve {
+   
+    margin-left: 15%;
+    
+  }
+  .reservation-list-container.dark h2 {
+    color: white;
+  }
+  .card_reserve {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .room-image {
+    order: -1;
+    margin-right:20px ;
+    width: 250px;
+    height: 250px;
+    margin-bottom: 10px;
+    align-items: center;
+  }
+}
+
+
+
+.about-us-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.team-members {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.team-member {
+  margin: 20px;
+  text-align: center;
+  transition: transform 0.3s ease; /* Add smooth transition for hover effect */
+}
+
+.team-member:hover {
+  transform: translateY(-5px); /* Add slight lift effect on hover */
+}
+
+.team-member img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow for depth */
+  text-decoration: none; /* Remove underline from anchor tags */
+  color: inherit; /* Inherit color from parent */
+}
+
+.team-member h2 {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  color: #333; /* Adjust text color */
+}
+
+/* Media query for responsive design */
+@media (max-width: 600px) {
+  .team-member {
+    margin: 10px;
+  }
+
+  .team-member img {
+    width: 160px;
+    height: 160px;
+  }
+
+  .team-member h2 {
+    font-size: 1rem;
+  }
+}
+.team-member {
+  color: black;
+}

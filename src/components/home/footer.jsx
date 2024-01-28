@@ -43,7 +43,8 @@ const Footer = ({ darkMode }) => {
                         Get the best value prices at your fingertips. Free for iOS and Android.</p>
 
 
-                    <FontAwesomeIcon icon={faMobileButton} className="phone-image" style={{ fontSize: '100px', color: iconColor }} />
+                    {/* <FontAwesomeIcon icon={faMobileButton} className="phone-image" style={{ fontSize: '100px', color: iconColor }} /> */}
+                    <img src="images/phone.jpg" alt="Phone" className="phone-image" style={{ width: '100px' }} />
 
 
                 </div>
